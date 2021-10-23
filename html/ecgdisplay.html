@@ -106,6 +106,8 @@
 		.style('font-size', "1em")
 		.text('Dependant');
 
+		let yAxis = yAxis_group.append("g")
+			.attr("transform", `translate(${yAxis_group_x}, ${yAxis_group_y})`);
 		<script type="text/babel">
 			!function(){
 				var rootdiv = document.getElementById("root");
