@@ -88,6 +88,8 @@
 		.text('Time');
 
 		let xAxis = xAxis_group.append("g")
+			.attr("transform", `translate(${xAxis_group_x},${xAxis_group_y})`);
+
 		<script type="text/babel">
 			!function(){
 				var rootdiv = document.getElementById("root");
