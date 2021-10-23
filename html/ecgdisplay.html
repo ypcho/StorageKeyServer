@@ -32,6 +32,8 @@
 
 		let starttime = Date.now();
 		var pushdataid = setInterval(function(){
+			let time = Date.now();
+			let voltage = 50 + 50 * Math.sin((time - starttime) / 1000);
 		<script type="text/babel">
 			!function(){
 				var rootdiv = document.getElementById("root");
