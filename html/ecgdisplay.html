@@ -78,6 +78,8 @@
 		let xAxis_text = xAxis_group.append("text")
 				.attr("x", config.graph.width / 2);
 
+		xAxis_text
+		.attr('x', xAxis_group_x + config.graph.width / 2)
 		<script type="text/babel">
 			!function(){
 				var rootdiv = document.getElementById("root");
