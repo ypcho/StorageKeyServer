@@ -90,6 +90,8 @@
 		let xAxis = xAxis_group.append("g")
 			.attr("transform", `translate(${xAxis_group_x},${xAxis_group_y})`);
 
+		let yAxis_group = svg.append("g");
+		let yAxis_group_x = config.margin.left;
 		<script type="text/babel">
 			!function(){
 				var rootdiv = document.getElementById("root");
