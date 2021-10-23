@@ -36,6 +36,8 @@
 			let voltage = 50 + 50 * Math.sin((time - starttime) / 1000);
 
 			dataset.push({time, voltage});
+		}, 10);
+	}
 		<script type="text/babel">
 			!function(){
 				var rootdiv = document.getElementById("root");
