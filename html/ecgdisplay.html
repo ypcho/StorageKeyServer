@@ -58,6 +58,8 @@
 
 	var svg = d3.select("#graph").append("svg");
 
+	svg.attr("width", config.margin.left + config.graph.width + config.margin.right);
+	svg.attr("height", config.margin.top + config.graph.height + config.margin.bottom);
 		<script type="text/babel">
 			!function(){
 				var rootdiv = document.getElementById("root");
