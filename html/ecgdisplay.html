@@ -16,7 +16,14 @@
 		<script src="https://d3js.org/d3.v7.min.js"></script>
 	</head>
 	<body>
-		<div id="root">
+		<div id="root"></div>
+		<div id="graph">
+		</div>
+		<div id="d3test">
+			<p>First</p>
+			<p>Second</p>
+			<p>Third</p>
+		</div>
 		<script type="text/babel">
 			!function(){
 				var rootdiv = document.getElementById("root");
@@ -81,6 +88,14 @@
 				);
 			}();
 
+		</script>
+		<script>
+			!function(){
+				d3.select("#graph")
+				.data([1, 2, 3])
+				.enter()
+				.append("p");
+			}();
 		</script>
 		<!--
 		      Note: this page is a great way to try React but it's not suitable for production.
