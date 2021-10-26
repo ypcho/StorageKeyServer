@@ -111,6 +111,8 @@
 
 		let graph_x = config.margin.left;
 		let graph_y = config.margin.top;
+		let pointbox = svg.append('g')
+				.attr("transform", `translate(${graph_x}, ${graph_y})`);
 	//}
 //			}();
 
