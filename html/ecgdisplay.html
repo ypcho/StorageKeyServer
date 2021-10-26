@@ -147,6 +147,8 @@
 			)
 			.attr("cx", function (d) { return xScale(d.time); } )
 			.attr("cy", function (d) { return yScale(d.voltage); } );
+
+		}, config.display.renderinterval);
 	//}
 //			}();
 
