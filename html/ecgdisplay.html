@@ -115,6 +115,8 @@
 				.attr("transform", `translate(${graph_x}, ${graph_y})`);
 
 		let intervalid = setInterval(function(){
+			let xEnd = d3.max(dataset, d => d.time);
+			let xStart = xEnd - config.display.keepinterval;
 	//}
 //			}();
 
