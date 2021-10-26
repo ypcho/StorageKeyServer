@@ -117,6 +117,8 @@
 		let intervalid = setInterval(function(){
 			let xEnd = d3.max(dataset, d => d.time);
 			let xStart = xEnd - config.display.keepinterval;
+			let xScale = d3.scaleLinear().domain([xStart, xEnd]).range([0, config.graph.width]);
+
 	//}
 //			}();
 
