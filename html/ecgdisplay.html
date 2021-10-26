@@ -145,6 +145,8 @@
 				update => update,
 				exit => exit.remove()
 			)
+			.attr("cx", function (d) { return xScale(d.time); } )
+			.attr("cy", function (d) { return yScale(d.voltage); } );
 	//}
 //			}();
 
