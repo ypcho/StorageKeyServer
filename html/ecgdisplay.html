@@ -139,6 +139,8 @@
 			}
 
 			pointbox.selectAll("circle")
+			.data(dataset, d => d.time)
+			.join(
 	//}
 //			}();
 
