@@ -123,6 +123,8 @@
 			let yUpper = d3.max(dataset, d=>d.voltage);
 			let yScale = d3.scaleLinear().domain([yLower, yUpper]).range([0, config.graph.height]);
 			{
+				// Draw X Axis
+				xAxis.call(d3.axisBottom(xScale));
 	//}
 //			}();
 
