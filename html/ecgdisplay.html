@@ -72,6 +72,8 @@
 				console.error("invalid payload format");
 							return;
 			}
+
+						var time = unpackBE(payload.subarray(0, 8));
 	}
 
 	var config = {
