@@ -167,6 +167,8 @@
 
 		let pointbox_path = pointbox.append("path")
 				.attr("fill", "none")
+				.attr("stroke", "red");
+
 		let intervalid = setInterval(function(){
 			let xEnd = d3.max(dataset, d => d.time);
 			let xStart = xEnd - config.display.keepinterval;
