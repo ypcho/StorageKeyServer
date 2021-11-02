@@ -171,8 +171,6 @@
 				dataset.splice(0, k);
 			}
 
-			pointbox.selectAll("circle")
-			.data(dataset, d => d.time)
 			.join(
 				enter => enter.append("circle").attr("r", 2).style("fill", "#CC0000"),
 				update => update,
