@@ -208,6 +208,8 @@
 					.x(d => xScale(d.time))
 					.y(d => yScale(d.voltage));
 
+			pointbox_path
+			.attr('d', drawline(dataset));
 
 		}, config.display.renderinterval);
 	//}
