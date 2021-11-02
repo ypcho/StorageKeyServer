@@ -171,8 +171,6 @@
 				dataset.splice(0, k);
 			}
 
-			.join(
-				enter => enter.append("circle").attr("r", 2).style("fill", "#CC0000"),
 				update => update,
 				exit => exit.remove()
 			)
