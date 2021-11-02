@@ -39,6 +39,8 @@
 			let time = Date.now();
 			let voltage = 50 + 50 * Math.sin((time - starttime) / 1000);
 		var url = 'wss://147.46.244.130:9001';
+		var client_id = "Browser0";
+		var username = "demo";
 
 			dataset.push({time, voltage});
 		}, 10);
