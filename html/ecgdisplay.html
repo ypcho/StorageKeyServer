@@ -68,6 +68,8 @@
 
 		client.subscribe(topic);
 		client.on("message", function(recvtopic, payload){
+			if(payload.length !== 16){
+				console.error("invalid payload format");
 	}
 
 	var config = {
