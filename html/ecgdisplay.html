@@ -95,6 +95,7 @@
 		},
 		display: {
 			keepinterval: 6000,
+			keepinterval: 5000,
 			renderinterval: 30,
 		},
 	};
@@ -108,6 +109,7 @@
         svg.append('text')
         .attr('x', config.margin.left + config.graph.width / 2)
         .attr('y', config.margin.top)
+	.attr('dy', "-1em")
         .attr('text-anchor', 'middle')
 //        .style('font-family', 'Helvetica')
         .style('font-size', "2em")
