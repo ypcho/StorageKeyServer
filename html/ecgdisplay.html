@@ -66,6 +66,8 @@
 			return V;
 		};
 
+		client.subscribe(topic);
+		client.on("message", function(recvtopic, payload){
 	}
 
 	var config = {
