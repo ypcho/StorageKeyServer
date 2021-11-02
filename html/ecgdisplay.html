@@ -36,8 +36,6 @@
 			username: username,
 			password: password,
 
-			dataset.push({time, voltage});
-		}, 10);
 			reconnectPeriod: 10000,
 			destroy: function(){
 				var urlobj = new URL(url);
