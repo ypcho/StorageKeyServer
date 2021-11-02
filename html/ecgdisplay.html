@@ -132,7 +132,6 @@
 		.attr('transform', `rotate(-90)`)
 //		.style('font-family', 'Helvetica')
 		.style('font-size', "1em")
-		.text('Dependant');
 		.text('Voltage');
 
 		let yAxis = yAxis_group.append("g")
@@ -154,7 +153,6 @@
 
 			let yLower = d3.min(dataset, d=>d.voltage);
 			let yUpper = d3.max(dataset, d=>d.voltage);
-			let yScale = d3.scaleLinear().domain([yLower, yUpper]).range([0, config.graph.height]);
 			let yScale = d3.scaleLinear().domain([yLower, yUpper]).range([config.graph.height, 0]);
 			{
 				// Draw X Axis
