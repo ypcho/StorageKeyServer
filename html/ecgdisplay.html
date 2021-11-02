@@ -114,6 +114,7 @@
 //        .style('font-family', 'Helvetica')
         .style('font-size', "2em")
         .text('Scatter Plot');
+        .text('ECG Data Display');
         
 	//{
 		let xAxis_group = svg.append("g");
@@ -127,6 +128,7 @@
 		.attr('x', xAxis_group_x + config.graph.width / 2)
 		.attr('y', xAxis_group_y)
 		.attr('dy', "2em") // to be adjusted
+		.attr('dy', "2em")
 		.attr('text-anchor', 'middle')
 		.style('font-family', 'Helvetica')
 		.style('font-size', "1em")
