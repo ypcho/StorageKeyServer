@@ -171,8 +171,6 @@
 				dataset.splice(0, k);
 			}
 
-			)
-			.attr("cx", function (d) { return xScale(d.time); } )
 			.attr("cy", function (d) { return yScale(d.voltage); } );
 			let drawline = d3.line()
 					.x(d => xScale(d.time))
