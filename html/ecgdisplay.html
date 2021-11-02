@@ -45,6 +45,8 @@
 		var topic = "hello";
 		var client  = mqtt.connect(url, {
 			clientId: client_id,
+			username: username,
+			password: password,
 
 			dataset.push({time, voltage});
 		}, 10);
