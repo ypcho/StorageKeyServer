@@ -4,8 +4,7 @@
 		<meta charset="utf-8"/>
 		<title>ECG Display v.dev</title>
 
-		<!--		<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script> -->
-		<script src="https://unpkg.com/mqtt/dist/mqtt.js"></script>
+		<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
 
 		<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
 		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
@@ -15,239 +14,65 @@
 
 		<!-- D3.js for Scatter Plot -->
 		<script src="https://d3js.org/d3.v7.min.js"></script>
-	</head>
-	<body>
-		<div id="root"></div>
-		<div id="graph"></div>
-<script type="text/javascript">
 
-//			!function(){
-	
-	{
-		var dataset = [];
+<style>
+	/* make elements occupy full screen */
+	html, body {
+		margin: 0px;
+		width: 100%;
+		height: 100%;
+	}
+	body {
+		display: flex;
+		flex-direction: column;
+		flex-basis: auto;
 
-		var url = 'wss://147.46.244.130:9001';
-		var client_id = "Browser0";
-		var username = "demo";
-		var password = "guest";
-		var topic = "hello";
-		var client  = mqtt.connect(url, {
-			clientId: client_id,
-			username: username,
-			password: password,
-
-			reconnectPeriod: 10000,
-			destroy: function(){
-				var urlobj = new URL(url);
-				urlobj.protocol = "https:";
-				open(urlobj.toString());
-			},
-		});
-
-		let unpackBE = function(S){
-			var V = 0;
-			for(let x of S){
-				V = V * 0x100 + x;
-			}
-			return V;
-		};
-
-		client.subscribe(topic);
-		client.on("message", function(recvtopic, payload){
-			if(payload.length !== 16){
-				console.error("invalid payload format");
-							return;
-			}
-
-						var time = unpackBE(payload.subarray(0, 8));
-						var voltage = unpackBE(payload.subarray(8, 16));
-						
-						dataset.push({time, voltage});
-		});
+	}
+	#header {
+		width: 100%;
 	}
 
-	var config = {
-		graph: {
-			width: 800,
-			height: 600,
-		},
-		margin: {
-			left: 80,
-			right: 80,
-			top: 80,
-			bottom: 80,
-		},
-		display: {
-			keepinterval: 5000,
-			renderinterval: 30,
-		},
-	};
+	#main {
+		display: flex;
+		justify-content: space-evenly;
+		flex-basis: auto;
+		width: 100%;
+		flex-grow: 1;
+		flex-shrink: 1;
+		align-items: stretch;
+	}
 
-	var svg = d3.select("#graph").append("svg");
+	#graph {
+		min-width: 75%;
+		flex-basis: auto;
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
 
-	svg.attr("width", config.margin.left + config.graph.width + config.margin.right);
-	svg.attr("height", config.margin.top + config.graph.height + config.margin.bottom);
-
-        // Title
-        svg.append('text')
-        .attr('x', config.margin.left + config.graph.width / 2)
-        .attr('y', config.margin.top)
-	.attr('dy', "-1em")
-        .attr('text-anchor', 'middle')
-//        .style('font-family', 'Helvetica')
-        .style('font-size', "2em")
-        .text('ECG Data Display');
-        
-	//{
-		let xAxis_group = svg.append("g");
-		let xAxis_group_x = config.margin.left;
-		let xAxis_group_y = config.margin.top + config.graph.height;
-
-		let xAxis_text = xAxis_group.append("text")
-				.attr("x", config.graph.width / 2);
-
-		xAxis_text
-		.attr('x', xAxis_group_x + config.graph.width / 2)
-		.attr('y', xAxis_group_y)
-		.attr('dy', "2em")
-		.attr('text-anchor', 'middle')
-//		.style('font-family', 'Helvetica')
-		.style('font-size', "1em")
-		.text('Time');
-
-		let xAxis = xAxis_group.append("g")
-			.attr("transform", `translate(${xAxis_group_x},${xAxis_group_y})`);
-
-		let yAxis_group = svg.append("g");
-		let yAxis_group_x = config.margin.left;
-		let yAxis_group_y = config.margin.top;
-
-		let yAxis_text = yAxis_group.append('text')
-		
-		yAxis_text
-		.attr("x", -(yAxis_group_y + config.graph.height / 2))
-		.attr("y", yAxis_group_x)
-		.attr("dy", "-1.5em")
-		.attr('text-anchor', 'middle')
-		.attr('transform', `rotate(-90)`)
-//		.style('font-family', 'Helvetica')
-		.style('font-size', "1em")
-		.text('Voltage');
-
-		let yAxis = yAxis_group.append("g")
-			.attr("transform", `translate(${yAxis_group_x}, ${yAxis_group_y})`);
-
-		let graph_x = config.margin.left;
-		let graph_y = config.margin.top;
-		let pointbox = svg.append('g')
-				.attr("transform", `translate(${graph_x}, ${graph_y})`);
-
-		let pointbox_path = pointbox.append("path")
-				.attr("fill", "none")
-				.attr("stroke", "red");
-
-		let intervalid = setInterval(function(){
-			let xEnd = d3.max(dataset, d => d.time);
-			let xStart = xEnd - config.display.keepinterval;
-			let xScale = d3.scaleLinear().domain([xStart, xEnd]).range([0, config.graph.width]);
-
-			let yLower = d3.min(dataset, d=>d.voltage);
-			let yUpper = d3.max(dataset, d=>d.voltage);
-			let yScale = d3.scaleLinear().domain([yLower, yUpper]).range([config.graph.height, 0]);
-			{
-				// Draw X Axis
-				xAxis.call(d3.axisBottom(xScale));
-			
-				// Draw Y Axis
-				yAxis.call(d3.axisLeft(yScale));
-			 }
-
-			{
-				dataset.sort((l, r) => d3.ascending(l.time, r.time));
-				let k = 0;
-				while(k < dataset.length && dataset[k].time < xStart)
-					k++;
-
-				dataset.splice(0, k);
-			}
-
-			let drawline = d3.line()
-					.x(d => xScale(d.time))
-					.y(d => yScale(d.voltage));
-
-			pointbox_path
-			.attr('d', drawline(dataset));
-
-		}, config.display.renderinterval);
-	//}
-//			}();
-
-		</script>
-		<script type="text/babel">
-			!function(){
-				var rootdiv = document.getElementById("root");
-
-//				var count = 0;
-//				var interval = 1000; // [ms]
-//
-//				function refresh(){
-//					ReactDOM.render(
-//						<h1>Hello, world! {count}</h1>,
-//						rootdiv
-//					);
-//				};
-//
-//				function increment(){
-//					count++;
-//					refresh();
-//					//console.log(`incremented count to ${count}`);
-//				};
-//
-//				refresh();
-//				setInterval(increment, interval);
-//				var interval = 1000; // [ms]
-
-				class SecondCounter extends React.Component{
-					constructor(props){
-						super(props);
-						this.state = {
-							count: 0,
-							interval: 1000, // [ms]
-						};
-					}
-					
-					componentDidMount(){
-						var tag = this;
-						tag.state.timerid = setInterval(
-							function(){
-								tag.setState(
-									{
-										count: tag.state.count + 1,
-									}
-								);
-							},
-							tag.state.interval
-						);
-					}
-
-					componentWillUnmount(){
-						clearInterval(this.state.timerid);
-					}
-
-					render(){
-						return (
-							<h1>{this.state.count} seconds passed.</h1>
-						);
-					}
-				}
-
-				ReactDOM.render(
-					<SecondCounter />,
-					rootdiv
-				);
-			}();
-
-		</script>
+	#control {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: stretch;
+		align-content: space-evenly;
+		flex-basis: auto;
+		max-width: 25%;
+		max-height: 100%;
+	}
+</style>
+	</head>
+	<body>
+		<div id="header">
+			<div>ECG Signal Display</div>
+			<div>made by krlee at krlee@sor.snu.ac.kr</div>
+		</div>
+		<div id="main">
+			<div id="graph"></div>
+			<div id="control"></div>
+		</div>
+		<script type="text/javascript" src="/ecgdisplay/scripts/render.js"></script>
+		<script type="text/babel" src="/ecgdisplay/scripts/control.js"></script>
 		<!--
 		      Note: this page is a great way to try React but it's not suitable for production.
 		      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
