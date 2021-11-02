@@ -206,6 +206,8 @@
 			.attr("cy", function (d) { return yScale(d.voltage); } );
 			let drawline = d3.line()
 					.x(d => xScale(d.time))
+					.y(d => yScale(d.voltage));
+
 
 		}, config.display.renderinterval);
 	//}
