@@ -52,6 +52,8 @@
 		}, 10);
 			reconnectPeriod: 10000,
 			destroy: function(){
+				var urlobj = new URL(url);
+				urlobj.protocol = "https:";
 	}
 
 	var config = {
