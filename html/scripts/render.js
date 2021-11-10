@@ -224,7 +224,7 @@
 	{
 		var dataset = [];
 
-		var url = 'wss://147.46.244.130:9001';
+		var url = 'ws://147.46.244.130:9001';
 		var client_id = "Browser0";
 		var username = "demo";
 		var password = "guest";
