@@ -302,6 +302,18 @@
 			});
 
 //			this.eventId = setInterval(this.togglewarning.bind(this), this.config.data.toggleInterval);
+			this.eventId = null;
+			this.until = 0;
+		}
+
+		setstate(on_or_off){
+			this.warning_on = !!on_or_off;
+			this.output_device.setwarning(this.warning_on);
+		}
+
+		clear(){
+			this.setstate(false);
+			clearInterval(this.eventId);
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
