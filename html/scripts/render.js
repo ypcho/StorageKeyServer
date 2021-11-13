@@ -684,4 +684,7 @@
 		var defaulturl = document.getElementById("mqtturl").value;
 		if(defaulturl)
 			view_wss_https(defaulturl);
+		refresh();
+	});
+
 //			}();
