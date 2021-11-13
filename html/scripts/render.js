@@ -386,6 +386,18 @@
 						timecnt+=30, 
 						unpackBE(
 							packet.subarray(16 + 8 * k, 24 + 8 * k)
+						)
+					);
+			}
+
+		}
+	}
+
+	function unpack_packet_by_promise(packet, resolve, reject){
+		unpack_packet(packet);
+		resolve();
+	}
+
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
