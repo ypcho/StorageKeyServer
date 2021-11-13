@@ -664,12 +664,24 @@
 							return;
 			}
 	function report_error(msg){
+		report(`[error] ${msg}`);
+	}
 
 						var time = unpackBE(payload.subarray(0, 8));
 						var voltage = unpackBE(payload.subarray(8, 16));
 						
 						dataset.push({time, voltage});
 		});
+	function view_wss_https(url){
+		var urlobj = new URL(url);
+		urlobj.protocol = "https:";
+		var urlhttps = urlobj.toString();
+		click_on_error.attr("href", urlhttps);
 	}
 
+	document.addEventListener("DOMContentLoaded", function(){
+
+		var defaulturl = document.getElementById("mqtturl").value;
+		if(defaulturl)
+			view_wss_https(defaulturl);
 //			}();
