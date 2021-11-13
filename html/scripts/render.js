@@ -446,6 +446,18 @@
 
 		client.on("connect", on_connect);
 		client.on("error", on_error);
+		client.on("close", on_close);
+
+		return client;
+	};
+
+
+	var inputentries = [{
+		type: "text",
+		id: "mqtturl", 
+		display: "MQTT URL",
+		default: "ws://147.46.244.130:9001/",
+	},{
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
