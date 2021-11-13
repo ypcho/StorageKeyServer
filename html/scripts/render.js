@@ -239,6 +239,9 @@
 
 			this.output_device.applyconfig({
 				display: {
+					timeinterval: this.config.data.keepinterval,
+				},
+			});
 		}
 
 		applyconfig(configmod){
@@ -260,8 +263,13 @@
 		cleanup(){
 			if(this.dataset.length > 0){
 				this.dataset.sort((l, r) => d3.ascending(l.time, r.time));
+			var dataset = this.dataset;
 
 				let xStart = d3.max(this.dataset, d => d.time) - this.config.data.keepinterval;
+			if(dataset.length > 0){
+				dataset.sort((l, r) => d3.ascending(l.time, r.time));
+
+				let xStart = d3.max(dataset, d => d.time) - this.config.data.keepinterval;
 
 				let k = 0;
 				while(k < dataset.length && dataset[k].time < xStart)
@@ -271,6 +279,10 @@
 			}
 		}
 
+		clear(){
+			this.dataset.splice(0, this.dataset.length);
+
+		}
 		render(){
 			graph.render(this.dataset);
 		}
