@@ -637,6 +637,17 @@
 	
 	var logarea = control.append("textarea")
 		.attr("id", "log")
+		.attr("cols", "100%")
+		.attr("disabled", true)
+		.style("flex-grow", 1)
+		.style("flex-shrink", 1)
+		.style("flex-basis", "auto");
+	
+	function report(msg){
+		var logmsg = `[${Date.now()}]${msg}`;
+		var appendedmsg = logarea.property("value") + logmsg + '\n';
+		logarea.property("value", appendedmsg);
+	}
 
 		let unpackBE = function(S){
 			var V = 0;
@@ -652,6 +663,7 @@
 				console.error("invalid payload format");
 							return;
 			}
+	function report_error(msg){
 
 						var time = unpackBE(payload.subarray(0, 8));
 						var voltage = unpackBE(payload.subarray(8, 16));
