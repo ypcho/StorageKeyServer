@@ -165,6 +165,18 @@
 				.style("fill", "none")
 				.text("warning");
 		}
+
+		setwarning(on_or_off){
+			var warningbox_color, text_color;
+			if(on_or_off){
+				// on
+				warningbox_color = "red";
+				text_color = "blue";
+			} else {
+				// off
+				warningbox_color = text_color = "none";
+			}
+
 			let xEnd = d3.max(dataset, d => d.time);
 			let xStart = xEnd - this.config.display.timeinterval;
 			let xScale = d3.scaleLinear().domain([xStart, xEnd]).range([0, graphwidth]);
