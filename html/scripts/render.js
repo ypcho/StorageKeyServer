@@ -102,6 +102,8 @@
 			var config = this.config;
 
 			let graphwidth = this.config.graph.width;
+			let graphheight = this.config.graph.height;
+
 			// Title
 			this.title
 			.attr('x', config.margin.left + graphwidth / 2)
@@ -131,6 +133,7 @@
 			.attr("x", -(yAxis_group_y + graphheight / 2))
 			.attr("y", yAxis_group_x)
 			.attr("dy", "-1.5em")
+			.attr("dy", "-3em")
 			.attr('text-anchor', 'middle')
 			.attr('transform', `rotate(-90)`)
 			.style('font-size', "1em")
@@ -141,6 +144,15 @@
 			let graph_x = config.margin.left;
 			let graph_y = config.margin.top;
 			this.pointbox.attr("transform", `translate(${graph_x}, ${graph_y})`);
+
+			let warningbox_x = config.margin.left + config.graph.width * 3 / 4;
+			let warningbox_y = 0;
+			let warningbox_width = config.graph.width / 4 + config.margin.right;
+			let warningbox_height = config.margin.top;
+			this.warningbox_group.attr(
+				"transform", `translate(${warningbox_x}, ${warningbox_y})`
+			);
+			this.warningbox
 			let xEnd = d3.max(dataset, d => d.time);
 			let xStart = xEnd - this.config.display.timeinterval;
 			let xScale = d3.scaleLinear().domain([xStart, xEnd]).range([0, graphwidth]);
