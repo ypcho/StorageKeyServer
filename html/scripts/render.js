@@ -531,7 +531,15 @@
 			}
 
 		}
+		{
+			let alerttopicelement = document.getElementById("alerttopic");
+			if(alerttopicelement.value)
+				mqttconfig.alerttopic = alerttopicelement.value;
+		}
 
+		if(mqttrecv) disconnect();
+		mqttrecv = ECGReceiver(datamanager, mqttconfig);
+		view_wss_https(mqttconfig.url);
 	}
 	{
 		var dataset = [];
@@ -551,6 +559,10 @@
 				var urlobj = new URL(url);
 				urlobj.protocol = "https:";
 				open(urlobj.toString());
+
+	function disconnect(){
+		if(mqttrecv){
+			mqttrecv.end();
 			},
 		});
 
