@@ -482,17 +482,29 @@
 		display: "Alert Topic",
 		default: "elapsed",
 	}];
+
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
+	var warningmanager = new WarningManager(graph);
 
 	class ECGbyMQTT {
 		constructor(){
 			this.config = new ConfigManager({
 				mqtt: {
+	var mqttrecv = null;
 
 				},
+	function connect(){
+		mqttconfig = {}
 
 			});
+		{
+			let urlelement = document.getElementById("mqtturl");
+			if(urlelement.value){
+				mqttconfig.url = urlelement.value;
+			} else{
+				report("[error] url must be specified");
+				return;
 
 		}
 
