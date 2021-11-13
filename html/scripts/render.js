@@ -563,6 +563,18 @@
 	function disconnect(){
 		if(mqttrecv){
 			mqttrecv.end();
+			mqttrecv = null;
+		}
+	}
+
+	function refresh(){
+		refreshinfo();
+		refreshdatapoint();
+	}
+
+	function refreshinfo(){
+		graph.fittoscreen();
+		graph.renderinfo();
 			},
 		});
 
