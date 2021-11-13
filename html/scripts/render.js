@@ -626,6 +626,18 @@
 		.html("disconnect")
 		.on("click", disconnect);
 
+	control.append("button")
+		.html("fix graph size")
+		.on("click", refresh);
+
+	var click_on_error = control.append("a")
+		.style("text-align", "center")
+		.attr("target", "_blank")
+		.html("click on error");
+	
+	var logarea = control.append("textarea")
+		.attr("id", "log")
+
 		let unpackBE = function(S){
 			var V = 0;
 			for(let x of S){
