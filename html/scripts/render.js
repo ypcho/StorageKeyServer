@@ -505,6 +505,18 @@
 			} else{
 				report("[error] url must be specified");
 				return;
+			}
+		}
+		{
+			let clientId = document.getElementById("clientid").value;
+			if(clientId)
+				mqttconfig.clientId = clientId;
+		}
+		{
+			let username = document.getElementById("username").value;
+			if(username){
+				mqttconfig.username = username;
+				let password = document.getElementById("password").value;
 
 		}
 
