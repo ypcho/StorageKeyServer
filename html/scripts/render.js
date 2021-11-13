@@ -517,6 +517,18 @@
 			if(username){
 				mqttconfig.username = username;
 				let password = document.getElementById("password").value;
+				if(password)
+					mqttconfig.password = password;
+			}
+		}
+		{
+			let topicelement = document.getElementById("topic");
+			if(topicelement.value)
+				mqttconfig.topic = topicelement.value;
+			else{
+				report("[error] topic must be specified");
+				return;
+			}
 
 		}
 
