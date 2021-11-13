@@ -45,7 +45,15 @@
 					.attr("fill", "none")
 					.attr("stroke", "red");
 
+			this.warningbox_group = this.svg.append("g");
+			this.warningbox = this.warningbox_group.append("rect");
+			this.warningbox_text = this.warningbox_group.append("text");
+
 			this.config = new ConfigManager({
+				graph: {
+					width: 800,
+					height: 600,
+				},
 				margin: {
 					left: 80,
 					right: 80,
@@ -68,6 +76,8 @@
 
 		render(dataset){
 			var config = this.config;;
+		fittoscreen(){
+			var config = this.config;
 
 			let totalwidth = this.container.node().offsetWidth;
 			let totalheight = this.container.node().offsetHeight;
@@ -78,6 +88,8 @@
 			let graphwidth = totalwidth - config.margin.left - config.margin.right;
 			let graphheight = totalheight - config.margin.top - config.margin.bottom;
 
+			this.applyconfig({
+				graph: {
 			// Title
 			this.title
 			.attr('x', config.margin.left + graphwidth / 2)
