@@ -458,6 +458,18 @@
 		display: "MQTT URL",
 		default: "ws://147.46.244.130:9001/",
 	},{
+		type: "text",
+		id: "clientid", 
+		display: "Client ID",
+	},{
+		type: "text",
+		id: "username", 
+		display: "Username",
+		default: "demo",
+	},{
+		type: "password",
+		id: "password", 
+		display: "Password",
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
