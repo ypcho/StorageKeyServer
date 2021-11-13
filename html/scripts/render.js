@@ -410,6 +410,18 @@
 			case this.options.alerttopic:
 				warningmanager.triggerwarning(5000);
 				break;
+
+			case this.options.topic:
+				unpack_packet_async(payload);
+				break;
+
+			default:
+				report(`[error] unknown topic ${JSON.stringify(recvtopic)} message receved`);
+				break;
+		}
+//		if(recvtopic === alerttopic){
+//			warningmanager.triggerwarning(5000);
+//		} else {
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
