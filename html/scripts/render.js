@@ -338,6 +338,18 @@
 		}
 	}
 
+	function unpackBE(S){
+		var V = 0;
+		for(let x of S){
+			V = V * 0x100 + x;
+		}
+		return V;
+	}
+
+	function on_connect(rc){
+		if(rc.returnCode === 0)
+			report(`[info] Successfully connected`);
+	}
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
