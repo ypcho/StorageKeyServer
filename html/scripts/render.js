@@ -153,6 +153,18 @@
 				"transform", `translate(${warningbox_x}, ${warningbox_y})`
 			);
 			this.warningbox
+				.attr("width", warningbox_width)
+				.attr("height", warningbox_height)
+				.style("fill", "none");
+			this.warningbox_text
+				.attr("x", warningbox_width / 2)
+				.attr("y", warningbox_height / 2)
+				.attr("text-anchor", "middle")
+				.attr("dominant-baseline", "middle")
+				.style("font-size", "3em")
+				.style("fill", "none")
+				.text("warning");
+		}
 			let xEnd = d3.max(dataset, d => d.time);
 			let xStart = xEnd - this.config.display.timeinterval;
 			let xScale = d3.scaleLinear().domain([xStart, xEnd]).range([0, graphwidth]);
