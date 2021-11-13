@@ -523,18 +523,6 @@
 		mqttrecv = ECGReceiver(datamanager, mqttconfig);
 		view_wss_https(mqttconfig.url);
 	}
-		var password = "guest";
-		var topic = "hello";
-		var client  = mqtt.connect(url, {
-			clientId: client_id,
-			username: username,
-			password: password,
-
-			reconnectPeriod: 10000,
-			destroy: function(){
-				var urlobj = new URL(url);
-				urlobj.protocol = "https:";
-				open(urlobj.toString());
 
 	function disconnect(){
 		if(mqttrecv){
