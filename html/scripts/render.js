@@ -575,6 +575,18 @@
 	function refreshinfo(){
 		graph.fittoscreen();
 		graph.renderinfo();
+	}
+
+	function refreshdatapoint(){
+		datamanager.cleanup(); datamanager.render();
+	}
+
+	function viewdata(){ datamanager.cleanup(); datamanager.render();  }
+
+	setInterval(viewdata, 30);
+
+	var control = d3.select("#control");
+	var control_table = control.append("table")
 			},
 		});
 
