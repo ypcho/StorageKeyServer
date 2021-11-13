@@ -599,8 +599,20 @@
 		.selectAll("tr")
 		.data(inputentries)
 		.join(
+			function(enter){
+				var wrap = enter.append("tr");
+
+				wrap.append("td")
+					.append("label")
+					.attr("for", d => d.id)
+					.html(d => d.display + ":");
+
+				return wrap.append("td").append("input")
 			},
 		});
+			update => update,
+			exit => exit.remove()
+		)
 
 		let unpackBE = function(S){
 			var V = 0;
