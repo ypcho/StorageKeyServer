@@ -613,6 +613,18 @@
 			update => update,
 			exit => exit.remove()
 		)
+		.attr("type", d => d.type)
+		.attr("id", d => d.id)
+		.attr("name", d => d.id)
+		.property("value", d => d.default);
+	
+	control.append("button")
+		.html("connect")
+		.on("click", connect);
+
+	control.append("button")
+		.html("disconnect")
+		.on("click", disconnect);
 
 		let unpackBE = function(S){
 			var V = 0;
