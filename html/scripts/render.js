@@ -470,6 +470,18 @@
 		type: "password",
 		id: "password", 
 		display: "Password",
+		default: "guest",
+	},{
+		type: "text",
+		id: "topic", 
+		display: "Topic",
+		default: "hello",
+	},{
+		type: "text",
+		id: "alerttopic",
+		display: "Alert Topic",
+		default: "elapsed",
+	}];
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
