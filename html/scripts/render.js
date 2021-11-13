@@ -587,6 +587,18 @@
 
 	var control = d3.select("#control");
 	var control_table = control.append("table")
+				.style("margin", "5px");
+
+	control_table.append("thead")
+		.append("tr")
+		.append("td")
+		.attr("colspan", 2)
+		.html("MQTT Parameter Input");
+
+	control_table.append("tbody")
+		.selectAll("tr")
+		.data(inputentries)
+		.join(
 			},
 		});
 
