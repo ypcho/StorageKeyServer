@@ -434,6 +434,18 @@
 	}
 
 	function on_close(){
+		report("[info] client disconnected");
+	}
+
+	function ECGReceiver(datamanager, mqttconfig){
+		var client  = mqtt.connect(mqttconfig.url, mqttconfig);
+
+		client.subscribe([mqttconfig.topic, mqttconfig.alerttopic]);
+
+		client.on("message", on_message.bind(client));
+
+		client.on("connect", on_connect);
+		client.on("error", on_error);
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
