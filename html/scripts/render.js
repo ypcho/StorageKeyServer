@@ -422,6 +422,18 @@
 //		if(recvtopic === alerttopic){
 //			warningmanager.triggerwarning(5000);
 //		} else {
+//			unpack_packet_async(payload);
+////			for(let offset=0; offset<payload.length; offset+= 16){
+////				unpack_packet_async(payload.subarray(offset, offset+16));
+////			}
+//		}
+	}
+
+	function on_error(err){
+		report(`[error] ${err.toString()}`);
+	}
+
+	function on_close(){
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
