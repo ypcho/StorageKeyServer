@@ -326,6 +326,18 @@
 		}
 
 		triggerwarning(duration){
+			var until = Date.now() + duration;
+			if(this.until < until){
+				this.until = until;
+				
+				if(!this.eventId){
+					this.togglewarning();
+					this.eventId = setInterval(this.togglewarning.bind(this), this.config.data.toggleInterval);
+				}
+			}
+		}
+	}
+
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
