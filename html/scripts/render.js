@@ -177,13 +177,22 @@
 				warningbox_color = text_color = "none";
 			}
 
+			this.warningbox.style("fill", warningbox_color);
+			this.warningbox_text.style("fill", text_color);
+		}
+
+		render(dataset){
+			var config = this.config;
+
 			let xEnd = d3.max(dataset, d => d.time);
 			let xStart = xEnd - this.config.display.timeinterval;
 			let xScale = d3.scaleLinear().domain([xStart, xEnd]).range([0, graphwidth]);
+			let xScale = d3.scaleLinear().domain([xStart, xEnd]).range([0, config.graph.width]);
 
 			let yLower = d3.min(dataset, d=>d.voltage);
 			let yUpper = d3.max(dataset, d=>d.voltage);
 			let yScale = d3.scaleLinear().domain([yLower, yUpper]).range([graphheight, 0]);
+			let yScale = d3.scaleLinear().domain([yLower, yUpper]).range([config.graph.height, 0]);
 			{
 				// Draw X Axis
 				this.xAxis.call(d3.axisBottom(xScale));
@@ -227,6 +236,9 @@
 				}
 
 			});
+
+			this.output_device.applyconfig({
+				display: {
 		}
 
 		applyconfig(configmod){
