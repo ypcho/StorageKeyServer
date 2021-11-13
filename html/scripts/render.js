@@ -573,7 +573,6 @@
 
 				return wrap.append("td").append("input")
 			},
-		});
 			update => update,
 			exit => exit.remove()
 		)
@@ -613,17 +612,6 @@
 		logarea.property("value", appendedmsg);
 	}
 
-		let unpackBE = function(S){
-			var V = 0;
-			for(let x of S){
-				V = V * 0x100 + x;
-			}
-			return V;
-		};
-
-		client.subscribe(topic);
-		client.on("message", function(recvtopic, payload){
-			if(payload.length !== 16){
 				console.error("invalid payload format");
 							return;
 			}
