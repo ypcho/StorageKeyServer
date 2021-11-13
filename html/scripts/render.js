@@ -314,6 +314,18 @@
 		clear(){
 			this.setstate(false);
 			clearInterval(this.eventId);
+			this.eventId = null;
+		}
+
+		togglewarning(){
+			if(Date.now() < this.until){
+				this.setstate(!this.warning_on);
+			} else {
+				this.clear();
+			}
+		}
+
+		triggerwarning(duration){
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
