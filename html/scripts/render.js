@@ -90,6 +90,18 @@
 
 			this.applyconfig({
 				graph: {
+					width: graphwidth,
+					height: graphheight,
+				},
+			});
+
+			this.renderinfo();
+		}
+
+		renderinfo(){
+			var config = this.config;
+
+			let graphwidth = this.config.graph.width;
 			// Title
 			this.title
 			.attr('x', config.margin.left + graphwidth / 2)
