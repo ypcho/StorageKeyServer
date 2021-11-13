@@ -374,6 +374,18 @@
 			 * |   ??   | length | voltage[0] | voltage[1] | ...
 			 * --------------------------------------------------
 			 * */
+			var length = unpackBE(packet.subarray(8, 16));
+			for(let k=0;k<length;++k){
+				if(packet.length < 24+8*k){
+					report(`[error] packet length out of bounds`);
+					console.log(JSON.stringify(packet.toString("hex")));
+					break;
+				}
+				else
+					datamanager.addpoint(
+						timecnt+=30, 
+						unpackBE(
+							packet.subarray(16 + 8 * k, 24 + 8 * k)
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
