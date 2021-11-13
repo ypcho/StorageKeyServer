@@ -350,6 +350,18 @@
 		if(rc.returnCode === 0)
 			report(`[info] Successfully connected`);
 	}
+
+	var timecnt = 0;
+	function unpack_packet(packet){
+		var format = 1;
+		if(format === 1){
+			if(packet.length % 16 > 0){
+				throw new RangeError("received invalid message format" + packet.toString());
+			}
+
+			for(let off=0;off<packet.length;off+=16){
+				var packet_piece = packet.subarray(off, off+16);
+
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
