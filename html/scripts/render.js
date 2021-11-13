@@ -612,18 +612,10 @@
 		logarea.property("value", appendedmsg);
 	}
 
-				console.error("invalid payload format");
-							return;
-			}
 	function report_error(msg){
 		report(`[error] ${msg}`);
 	}
 
-						var time = unpackBE(payload.subarray(0, 8));
-						var voltage = unpackBE(payload.subarray(8, 16));
-						
-						dataset.push({time, voltage});
-		});
 	function view_wss_https(url){
 		var urlobj = new URL(url);
 		urlobj.protocol = "https:";
