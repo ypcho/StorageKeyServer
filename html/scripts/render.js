@@ -1,5 +1,4 @@
 //			!function(){
-	
 
 	class ConfigManager {
 		constructor(defaultconfig){
@@ -70,12 +69,8 @@
 
 		applyconfig(configmod){
 			this.config.applyconfig(configmod);
-
-			this.clear();
 		}
 
-		render(dataset){
-			var config = this.config;;
 		fittoscreen(){
 			var config = this.config;
 
@@ -132,7 +127,6 @@
 			this.yAxis_text
 			.attr("x", -(yAxis_group_y + graphheight / 2))
 			.attr("y", yAxis_group_x)
-			.attr("dy", "-1.5em")
 			.attr("dy", "-3em")
 			.attr('text-anchor', 'middle')
 			.attr('transform', `rotate(-90)`)
@@ -186,12 +180,10 @@
 
 			let xEnd = d3.max(dataset, d => d.time);
 			let xStart = xEnd - this.config.display.timeinterval;
-			let xScale = d3.scaleLinear().domain([xStart, xEnd]).range([0, graphwidth]);
 			let xScale = d3.scaleLinear().domain([xStart, xEnd]).range([0, config.graph.width]);
 
 			let yLower = d3.min(dataset, d=>d.voltage);
 			let yUpper = d3.max(dataset, d=>d.voltage);
-			let yScale = d3.scaleLinear().domain([yLower, yUpper]).range([graphheight, 0]);
 			let yScale = d3.scaleLinear().domain([yLower, yUpper]).range([config.graph.height, 0]);
 			{
 				// Draw X Axis
@@ -261,11 +253,8 @@
 		}
 
 		cleanup(){
-			if(this.dataset.length > 0){
-				this.dataset.sort((l, r) => d3.ascending(l.time, r.time));
 			var dataset = this.dataset;
 
-				let xStart = d3.max(this.dataset, d => d.time) - this.config.data.keepinterval;
 			if(dataset.length > 0){
 				dataset.sort((l, r) => d3.ascending(l.time, r.time));
 
@@ -290,7 +279,6 @@
 
 	}
 
-	var svgwrap = document.getElementById("graph");
 	class WarningManager{
 		constructor(output_device){
 			this.warning_on = false;
