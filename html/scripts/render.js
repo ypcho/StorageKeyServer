@@ -398,6 +398,18 @@
 		resolve();
 	}
 
+	function unpack_packet_async(packet){
+		new Promise(
+			unpack_packet_by_promise.bind(null, packet)
+		).catch(report_error);
+	}
+
+//	var alerttopic = "elapsed";
+	function on_message(recvtopic, payload){
+		switch(recvtopic){
+			case this.options.alerttopic:
+				warningmanager.triggerwarning(5000);
+				break;
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
