@@ -362,6 +362,18 @@
 			for(let off=0;off<packet.length;off+=16){
 				var packet_piece = packet.subarray(off, off+16);
 
+				var time = unpackBE(packet_piece.subarray(0, 8));
+				var voltage = unpackBE(packet_piece.subarray(8, 16));
+			
+				datamanager.addpoint(time, voltage);
+			}
+		} else if(format === 2){
+			/*
+			 * |<-  8 ->|<-  8 ->|<-    8   ->|<-    8   ->|
+			 * --------------------------------------------------
+			 * |   ??   | length | voltage[0] | voltage[1] | ...
+			 * --------------------------------------------------
+			 * */
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
