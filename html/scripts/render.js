@@ -475,17 +475,11 @@
 	var datamanager = new DataManager(graph);
 	var warningmanager = new WarningManager(graph);
 
-	class ECGbyMQTT {
-		constructor(){
-			this.config = new ConfigManager({
-				mqtt: {
 	var mqttrecv = null;
 
-				},
 	function connect(){
 		mqttconfig = {}
 
-			});
 		{
 			let urlelement = document.getElementById("mqtturl");
 			if(urlelement.value){
@@ -529,12 +523,6 @@
 		mqttrecv = ECGReceiver(datamanager, mqttconfig);
 		view_wss_https(mqttconfig.url);
 	}
-	{
-		var dataset = [];
-
-		var url = 'ws://147.46.244.130:9001';
-		var client_id = "Browser0";
-		var username = "demo";
 		var password = "guest";
 		var topic = "hello";
 		var client  = mqtt.connect(url, {
