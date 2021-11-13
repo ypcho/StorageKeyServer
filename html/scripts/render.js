@@ -283,6 +283,7 @@
 			this.dataset.splice(0, this.dataset.length);
 
 		}
+
 		render(){
 			graph.render(this.dataset);
 		}
@@ -290,6 +291,17 @@
 	}
 
 	var svgwrap = document.getElementById("graph");
+	class WarningManager{
+		constructor(output_device){
+			this.warning_on = false;
+			this.output_device = output_device;
+			this.config = new ConfigManager({
+				data: {
+					toggleInterval: 300,
+				},
+			});
+
+//			this.eventId = setInterval(this.togglewarning.bind(this), this.config.data.toggleInterval);
 	var graph = new Render("#graph");
 	var datamanager = new DataManager(graph);
 
